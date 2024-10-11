@@ -52,3 +52,26 @@ int main() {
     return 0;
 }
 // } Driver Code Ends
+
+// easy method to calculate gcd
+class Solution {
+  public:
+  
+    long long gcd(long long a, long long b) {
+        if (b == 0) return a;
+        
+        return gcd(b, a % b);
+    }
+    vector<long long> lcmAndGcd(long long A , long long B) {
+        // code here 
+        vector<long long> ans;
+        
+        long long _gcd = gcd(A, B);
+        long long lcm = A * ( B / _gcd);
+        
+        ans.push_back(lcm);
+        ans.push_back(_gcd);
+        
+        return ans;
+    }
+};
