@@ -121,3 +121,33 @@ string addStrings(string num1, string num2)
 	return ans;
 }
 };
+
+// optimized code inspired from Add binary problem solution
+class Solution {
+public:
+    string addStrings(string num1, string num2) {
+
+       string res = "";
+       int carr = 0;
+       int i = num1.size() - 1;
+       int j = num2.size() - 1;
+
+       while (i >= 0 || j >= 0 || carr) {
+        int sum = carr;
+        if (i >= 0) sum += num1[i--] - '0';
+        if (j >= 0) sum += num2[j--] - '0';
+
+        carr = sum / 10;
+
+        if (carr) {
+            res += (sum % 10) + '0';
+        } else {
+            res += sum + '0';
+        }
+       } 
+
+       reverse(res.begin(), res.end());
+
+       return res;
+    }
+};
