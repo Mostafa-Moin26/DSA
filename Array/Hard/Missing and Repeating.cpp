@@ -125,3 +125,48 @@ class Solution {
         return {(int)repeatedNum,(int)missingNum};
     }
 };
+
+
+// Using Xor
+class Solution {
+public:
+    vector<int> findErrorNums(vector<int>& nums) {      
+
+        int n = nums.size();
+        int sumXor = 0;
+
+        for (int i = 0; i < n; i++) {
+            sumXor ^= nums[i];
+            sumXor ^= (i + 1);
+        }
+
+        int pos = __builtin_ctzll(sumXor);
+
+        int repeatedNum = 0, missingNum = 0;
+
+        for (int i = 1; i <= n; i++) {
+            if (i & (1 << pos)) {
+                missingNum ^= i;
+            } else {
+                repeatedNum ^= i;
+            }
+        }
+
+        for (int i = 0; i < n; i++) {
+            if (nums[i] & (1 << pos)) {
+                missingNum ^= nums[i];
+            } else {
+                repeatedNum ^= nums[i];
+            } 
+        }
+
+        int cnt = 0;
+
+        for (int i = 0; i < n; i++) {
+            if (nums[i] == missingNum) cnt++;
+        }
+        if (cnt == 2) return {missingNum, repeatedNum};
+
+        return {repeatedNum, missingNum}; 
+    }
+};
