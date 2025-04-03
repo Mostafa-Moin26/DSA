@@ -76,3 +76,19 @@ public:
         return {start, end};
     }
 };
+
+// using stl (lower_bound and upper_bound)
+class Solution {
+    public:
+        vector<int> searchRange(vector<int>& nums, int target) {
+            int n = nums.size();
+            int start = lower_bound(nums.begin(), nums.end(), target) - nums.begin();
+            int end = upper_bound(nums.begin(), nums.end(), target) - nums.begin();
+            
+            if (start == n || nums[start] != target) {
+                return {-1, -1};
+            }
+    
+            return {start, end - 1};
+        }
+    };
