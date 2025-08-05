@@ -59,3 +59,20 @@ int findKthElement(vector<int> &arr1, vector<int> &arr2, int k){
     return ans[k - 1];
 
 }
+
+// Easiest way
+#include <bits/stdc++.h> 
+
+
+int findKthElement(vector<int> &arr1, vector<int> &arr2, int k){
+    // Write your code here.
+
+    for (int i = 0; i < arr2.size(); i++) {
+        arr1.push_back(arr2[i]);
+    }
+
+    sort(arr1.begin(), arr1.end());
+
+    return arr1[k - 1];
+
+}
