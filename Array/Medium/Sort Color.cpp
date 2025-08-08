@@ -61,3 +61,32 @@ public:
 
     }
 };
+
+// My second solution | Beats 100%
+class Solution {
+public:
+    void sortColors(vector<int>& nums) {
+        
+        int pos = 0; // 'pos' keeps track of the correct position to place 0s and then 1s
+        int n = nums.size();
+        
+        // First pass: Move all 0s to the front
+        for (int i = 0; i < n; i++) {
+
+            if (nums[i] == 0) {
+                swap(nums[i], nums[pos]);
+                pos++;
+            }
+        }
+
+        // Second pass: Move all 1s to their correct positions
+        for (int i = pos; i < n; i++) {
+            
+            if (nums[i] == 1) {
+                swap(nums[i], nums[pos]);
+                pos++;
+            }
+        }
+
+    }
+};
